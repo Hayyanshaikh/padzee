@@ -220,7 +220,7 @@ export default function NotePage({ params }: { params: { slug: string } }) {
           <Input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="text-xl font-semibold border-none shadow-none focus-visible:ring-0 px-0 max-w-md bg-transparent"
+            className="text-lg font-semibold border-none shadow-none focus-visible:ring-0 px-0 max-w-md bg-transparent"
             placeholder="Untitled"
             disabled={!isEditMode && !isNewNote}
           />
@@ -253,7 +253,7 @@ export default function NotePage({ params }: { params: { slug: string } }) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Start writing your note..."
-          className="flex-1 resize-none border-none shadow-none focus-visible:ring-0 text-base leading-relaxed min-h-[calc(100vh-16rem)] bg-transparent"
+          className="flex-1 resize-none border-none shadow-none p-0 border-none focus-visible:border-0 focus-visible:ring-0 leading-relaxed min-h-[calc(100vh-16rem)] bg-transparent"
           disabled={!isEditMode && !isNewNote}
         />
       </main>
@@ -272,7 +272,7 @@ export default function NotePage({ params }: { params: { slug: string } }) {
             <Input
               value={noteUrl}
               readOnly
-              className="flex-1 bg-transparent border-none shadow-none focus-visible:ring-0 cursor-default text-sm text-muted-foreground"
+              className="flex-1 bg-transparent shadow-none focus:ring-0 focus:box-shadow-none focus-visible:ring-0 cursor-default text-sm text-muted-foreground"
             />
             <Button
               variant="ghost"
