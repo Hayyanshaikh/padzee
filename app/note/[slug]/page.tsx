@@ -253,21 +253,13 @@ export default function NotePage({ params }: { params: { slug: string } }) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Start writing your note..."
-          className="flex-1 resize-none border-none shadow-none p-0 border-none focus-visible:border-0 focus-visible:ring-0 leading-relaxed min-h-[calc(100vh-16rem)] bg-transparent"
+          className="flex-1 resize-none border-none shadow-none p-0 focus-visible:border-0 focus-visible:ring-0 leading-relaxed min-h-[calc(100vh-16rem)] bg-transparent"
           disabled={!isEditMode && !isNewNote}
         />
       </main>
 
       <footer className="border-t bg-background sticky bottom-0">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center gap-4">
-          <Button
-            onClick={handleSave}
-            disabled={isSaving || (!isEditMode && !isNewNote)}
-            className="min-w-24"
-          >
-            <Save className="h-4 w-4 mr-2" />
-            {isSaving ? "Saving..." : "Save"}
-          </Button>
           <div className="flex-1 flex items-center gap-2">
             <Input
               value={noteUrl}
@@ -278,11 +270,20 @@ export default function NotePage({ params }: { params: { slug: string } }) {
               variant="ghost"
               size="sm"
               onClick={handleCopyUrl}
-              className="shrink-0"
+              className="shrink-0 border h-10 w-10 p-2"
             >
               <Link2 className="h-4 w-4" />
             </Button>
           </div>
+
+          <Button
+            onClick={handleSave}
+            disabled={isSaving || (!isEditMode && !isNewNote)}
+            className="min-w-24"
+          >
+            <Save className="h-4 w-4 mr-2" />
+            {isSaving ? "Saving..." : "Save"}
+          </Button>
         </div>
       </footer>
     </div>
