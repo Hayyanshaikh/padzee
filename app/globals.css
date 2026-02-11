@@ -117,10 +117,11 @@ textarea:focus-visible {
 /* Toolbar Styling - Remove borders, keep clean look */
 .custom-quill-editor .ql-toolbar {
   border: none !important;
-  border-bottom: 1px solid hsl(var(--border)) !important;
-  background: hsl(var(--background)) !important;
   padding: 4px 0 !important;
   font-family: inherit;
+  background-color: #00000009 !important;
+  border-radius: 5px !important;
+  padding-inline: 5px !important;
 }
 
 .custom-quill-editor .ql-toolbar button {
@@ -144,12 +145,12 @@ textarea:focus-visible {
 }
 
 .custom-quill-editor .ql-toolbar button:hover {
-  background: hsl(var(--accent)) !important;
+  background: #0001 !important;
   color: hsl(var(--accent-foreground)) !important;
 }
 
 .custom-quill-editor .ql-toolbar button.ql-active {
-  background: hsl(var(--accent)) !important;
+  background: #0001 !important;
   color: hsl(var(--accent-foreground)) !important;
 }
 
@@ -168,7 +169,7 @@ textarea:focus-visible {
   font-family: inherit;
   color: hsl(var(--foreground));
   background: transparent !important;
-  height: calc(100dvh - 231px) !important;
+  height: calc(100dvh - 235px) !important;
   overflow-y: auto;
 }
 
