@@ -9,6 +9,7 @@ interface NoteFooterProps {
   isSaving: boolean;
   isEditMode: boolean;
   isNewNote: boolean;
+  isLockedForEditing: boolean;
 }
 
 export function NoteFooter({
@@ -18,6 +19,7 @@ export function NoteFooter({
   isSaving,
   isEditMode,
   isNewNote,
+  isLockedForEditing,
 }: NoteFooterProps) {
   return (
     <footer className="border-t bg-background sticky bottom-0">
@@ -40,7 +42,9 @@ export function NoteFooter({
 
         <Button
           onClick={onSave}
-          disabled={isSaving || (!isEditMode && !isNewNote)}
+          disabled={
+            isSaving || (!isEditMode && !isNewNote) || isLockedForEditing
+          }
           className="min-w-24"
         >
           <Save className="h-4 w-4 mr-2" />

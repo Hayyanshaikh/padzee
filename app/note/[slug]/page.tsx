@@ -16,13 +16,20 @@ export default function NotePage({ params }: { params: { slug: string } }) {
     isLoading,
     isSaving,
     isNewNote,
+    canDelete,
+    canManageLock,
+    lockMode,
+    isPasswordUnlocked,
+    isLockedForEditing,
     setTitle,
     setContent,
     handleSave,
     handleCopyContent,
     handleNewNote,
     handleCopyUrl,
-    toggleEditMode,
+    handleDelete,
+    handleUnlockWithPassword,
+    handleUpdateLock,
   } = useNote(params.slug);
 
   // Keyboard shortcut: Ctrl+S or Cmd+S to save
@@ -30,7 +37,7 @@ export default function NotePage({ params }: { params: { slug: string } }) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === "s") {
         e.preventDefault(); // Prevent browser's default save dialog
-        if ((isEditMode || isNewNote) && !isSaving) {
+        if (!isLockedForEditing && !isSaving) {
           handleSave();
         }
       }
@@ -38,7 +45,7 @@ export default function NotePage({ params }: { params: { slug: string } }) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isEditMode, isNewNote, isSaving, handleSave]);
+  }, [isLockedForEditing, isSaving, handleSave]);
 
   if (isLoading) {
     return <NoteLoading />;
@@ -54,10 +61,16 @@ export default function NotePage({ params }: { params: { slug: string } }) {
         title={title}
         onTitleChange={setTitle}
         isNewNote={isNewNote}
-        isEditMode={isEditMode}
-        onToggleEditMode={toggleEditMode}
         onCopyContent={handleCopyContent}
         onNewNote={handleNewNote}
+        onDelete={handleDelete}
+        canDelete={canDelete}
+        lockMode={lockMode}
+        isPasswordUnlocked={isPasswordUnlocked}
+        isLockedForEditing={isLockedForEditing}
+        canManageLock={canManageLock}
+        onUnlockWithPassword={handleUnlockWithPassword}
+        onUpdateLock={handleUpdateLock}
       />
 
       <NoteEditor
@@ -65,6 +78,7 @@ export default function NotePage({ params }: { params: { slug: string } }) {
         onContentChange={setContent}
         isEditMode={isEditMode}
         isNewNote={isNewNote}
+        isLockedForEditing={isLockedForEditing}
       />
 
       <NoteFooter
@@ -74,6 +88,7 @@ export default function NotePage({ params }: { params: { slug: string } }) {
         isSaving={isSaving}
         isEditMode={isEditMode}
         isNewNote={isNewNote}
+        isLockedForEditing={isLockedForEditing}
       />
     </div>
   );

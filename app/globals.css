@@ -95,7 +95,7 @@ input:focus-visible,
 textarea:focus-visible {
   outline: none !important;
   box-shadow: none !important;
-  border: none !important;
+  border-color: #0008 !important;
 }
 
 /* Custom Quill Editor Styles */
@@ -152,6 +152,11 @@ textarea:focus-visible {
 .custom-quill-editor .ql-toolbar button.ql-active {
   background: #0001 !important;
   color: hsl(var(--accent-foreground)) !important;
+}
+
+.ql-editor ol,
+.ql-editor ul {
+  padding-left: 10px !important;
 }
 
 /* Editor Container - Remove all borders */

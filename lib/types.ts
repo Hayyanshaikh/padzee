@@ -5,6 +5,10 @@ export interface Note {
   slug: string;
   createdAt: string;
   updatedAt: string;
+  ownerFingerprint?: string;
+  lockMode?: "none" | "hard" | "password";
+  lockPasswordHash?: string | null;
+  lockedAt?: string;
 }
 
 export interface NoteFormData {

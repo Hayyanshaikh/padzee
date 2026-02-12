@@ -30,6 +30,10 @@ export async function createNote(noteData: {
   slug: string;
   createdAt: string;
   updatedAt: string;
+  ownerFingerprint?: string;
+  lockMode?: "none" | "hard" | "password";
+  lockPasswordHash?: string | null;
+  lockedAt?: string;
 }): Promise<Note> {
   const response = await fetch(API_URL, {
     method: "POST",
@@ -47,6 +51,19 @@ export async function createNote(noteData: {
 }
 
 /**
+ * Delete a note
+ */
+export async function deleteNote(noteId: string): Promise<void> {
+  const response = await fetch(`${API_URL}/${noteId}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete note");
+  }
+}
+
+/**
  * Update an existing note
  */
 export async function updateNote(
@@ -56,6 +73,9 @@ export async function updateNote(
     content: string;
     slug: string;
     updatedAt: string;
+    lockMode?: "none" | "hard" | "password";
+    lockPasswordHash?: string | null;
+    lockedAt?: string | null;
   },
 ): Promise<Note> {
   const response = await fetch(`${API_URL}/${noteId}`, {
