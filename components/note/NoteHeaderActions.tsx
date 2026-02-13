@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Copy, Lock, Menu, Plus, Trash2 } from "lucide-react";
-import { LockMode } from "@/components/note/NoteHeaderTypes";
+import { LockMode } from "@/components/note/noteHeaderTypes";
 
 interface NoteHeaderActionsProps {
   showUnlockAction: boolean;
@@ -50,13 +50,23 @@ export function NoteHeaderDesktopActions({
   return (
     <div className="hidden sm:flex items-center gap-2">
       {showUnlockAction && (
-        <Button variant="outline" size="sm" onClick={onUnlockOpen}>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onUnlockOpen}
+          data-testid="unlock-button"
+        >
           Unlock to edit
         </Button>
       )}
 
       {showLockAction && (
-        <Button variant="outline" size="sm" onClick={onLockOpen}>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onLockOpen}
+          data-testid="lock-button"
+        >
           <Lock className="h-4 w-4 mr-2" />
           {lockMode === "none" ? "Lock" : "Manage lock"}
         </Button>
@@ -65,7 +75,7 @@ export function NoteHeaderDesktopActions({
       {showContentActions && (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" data-testid="actions-button">
               <Menu className="h-4 w-4 mr-2" />
               Actions
             </Button>
@@ -129,7 +139,11 @@ export function NoteHeaderMobileMenu({
     <div className="sm:hidden">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon">
+          <Button
+            variant="outline"
+            size="icon"
+            data-testid="mobile-menu-button"
+          >
             <Menu className="h-4 w-4" />
             <span className="sr-only">Open menu</span>
           </Button>

@@ -7,7 +7,7 @@ import {
   NoteHeaderDesktopActions,
   NoteHeaderMobileMenu,
 } from "@/components/note/NoteHeaderActions";
-import { LockMode } from "@/components/note/NoteHeaderTypes";
+import { LockMode } from "@/components/note/noteHeaderTypes";
 
 interface NoteHeaderProps {
   title: string;
@@ -95,6 +95,7 @@ export function NoteHeader({
     <header className="border-b bg-background sticky top-0 z-10">
       <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
         <Input
+          data-testid="note-title"
           value={title}
           onChange={(e) => onTitleChange(e.target.value)}
           className="text-lg font-semibold border-none shadow-none focus-visible:ring-0 px-0 max-w-md bg-transparent"
@@ -105,6 +106,7 @@ export function NoteHeader({
         <div className="flex items-center gap-2">
           {showLockBadge && (
             <Badge
+              data-testid="lock-badge"
               variant="secondary"
               className="hidden flex-[0_0_auto] sm:flex"
             >

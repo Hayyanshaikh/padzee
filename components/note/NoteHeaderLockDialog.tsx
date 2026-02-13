@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertTriangle } from "lucide-react";
-import { LockMode } from "@/components/note/NoteHeaderTypes";
+import { LockMode } from "@/components/note/noteHeaderTypes";
 
 interface NoteHeaderLockDialogProps {
   open: boolean;
@@ -34,6 +34,7 @@ export function NoteHeaderLockDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
+        data-testid="lock-dialog"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
@@ -73,6 +74,7 @@ export function NoteHeaderLockDialog({
               placeholder="Set password"
               value={lockPassword}
               onChange={(e) => onLockPasswordChange(e.target.value)}
+              data-testid="lock-password-input"
             />
           </TabsContent>
         </Tabs>
@@ -81,7 +83,9 @@ export function NoteHeaderLockDialog({
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
-          <Button onClick={onApplyLock}>Save</Button>
+          <Button onClick={onApplyLock} data-testid="lock-save">
+            Save
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

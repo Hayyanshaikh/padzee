@@ -339,6 +339,29 @@ export function useNote(slug: string) {
     }
   }
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (process.env.NEXT_PUBLIC_E2E !== "true") return;
+
+    (
+      window as unknown as {
+        __PADZEE_E2E__?: {
+          triggerDelete: () => void;
+          triggerUpdateLock: (mode: LockMode, password?: string) => void;
+        };
+      }
+    ).__PADZEE_E2E__ = {
+      triggerDelete: handleDelete,
+      triggerUpdateLock: (mode, password) => {
+        void handleUpdateLock(mode, password);
+      },
+    };
+
+    return () => {
+      delete (window as unknown as { __PADZEE_E2E__?: unknown }).__PADZEE_E2E__;
+    };
+  }, [handleDelete, handleUpdateLock]);
+
   return {
     // State
     title,

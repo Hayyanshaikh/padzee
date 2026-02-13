@@ -26,6 +26,7 @@ export function NoteFooter({
       <div className="max-w-5xl mx-auto px-4 py-4 flex items-center gap-4">
         <div className="flex-1 flex items-center gap-2">
           <Input
+            data-testid="note-url"
             value={noteUrl}
             readOnly
             className="flex-1 bg-transparent shadow-none focus:ring-0 focus:box-shadow-none focus-visible:ring-0 cursor-default text-sm text-muted-foreground"
@@ -34,6 +35,8 @@ export function NoteFooter({
             variant="ghost"
             size="sm"
             onClick={onCopyUrl}
+            data-testid="copy-url"
+            aria-label="Copy URL"
             className="shrink-0 border h-10 w-10 p-2"
           >
             <Link2 className="h-4 w-4" />
@@ -45,6 +48,7 @@ export function NoteFooter({
           disabled={
             isSaving || (!isEditMode && !isNewNote) || isLockedForEditing
           }
+          data-testid="save-note"
           className="min-w-24"
         >
           <Save className="h-4 w-4 mr-2" />

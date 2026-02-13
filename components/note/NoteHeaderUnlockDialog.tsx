@@ -38,12 +38,15 @@ export function NoteHeaderUnlockDialog({
           placeholder="Password"
           value={password}
           onChange={(e) => onPasswordChange(e.target.value)}
+          data-testid="unlock-password-input"
         />
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
-          <Button onClick={onUnlock}>Unlock</Button>
+          <Button onClick={onUnlock} data-testid="unlock-submit">
+            Unlock
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
