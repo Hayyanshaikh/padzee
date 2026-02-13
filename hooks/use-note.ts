@@ -175,7 +175,12 @@ export function useNote(slug: string) {
   }
 
   function handleCopyContent() {
-    navigator.clipboard.writeText(content);
+    const plainText =
+      typeof window !== "undefined"
+        ? new DOMParser().parseFromString(content, "text/html").body
+            .textContent || ""
+        : content.replace(/<[^>]*>/g, "");
+    navigator.clipboard.writeText(plainText.trim());
     toast.success("Content copied to clipboard");
   }
 

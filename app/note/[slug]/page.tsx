@@ -2,10 +2,10 @@
 
 import { useEffect } from "react";
 import { useNote } from "@/hooks/use-note";
-import { NoteHeader } from "@/components/note/note-header";
-import { NoteEditor } from "@/components/note/note-editor";
-import { NoteFooter } from "@/components/note/note-footer";
-import { NoteLoading } from "@/components/note/note-loading";
+import { NoteHeader } from "@/components/note/NoteHeader";
+import { NoteEditor } from "@/components/note/NoteEditor";
+import { NoteFooter } from "@/components/note/NoteFooter";
+import { NoteLoading } from "@/components/note/NoteLoading";
 
 export default function NotePage({ params }: { params: { slug: string } }) {
   const {
