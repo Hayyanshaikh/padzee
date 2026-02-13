@@ -1,5 +1,5 @@
 // Export all note components
-export { NoteHeader } from "./note-header";
-export { NoteEditor } from "./note-editor";
-export { NoteFooter } from "./note-footer";
-export { NoteLoading } from "./note-loading";
+export { NoteHeader } from "./NoteHeader";
+export { NoteEditor } from "./NoteEditor";
+export { NoteFooter } from "./NoteFooter";
+export { NoteLoading } from "./NoteLoading";
