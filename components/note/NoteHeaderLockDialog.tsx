@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertTriangle } from "lucide-react";
-import { LockMode } from "@/components/note/NoteHeaderTypes";
+import { LockMode } from "@/components/note/noteHeaderTypes";
 
 interface NoteHeaderLockDialogProps {
   open: boolean;

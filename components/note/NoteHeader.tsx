@@ -7,7 +7,7 @@ import {
   NoteHeaderDesktopActions,
   NoteHeaderMobileMenu,
 } from "@/components/note/NoteHeaderActions";
-import { LockMode } from "@/components/note/NoteHeaderTypes";
+import { LockMode } from "@/components/note/noteHeaderTypes";
 
 interface NoteHeaderProps {
   title: string;
