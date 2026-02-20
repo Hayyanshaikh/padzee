@@ -33,9 +33,6 @@ export function NoteEditor({
   if (isLockedForEditing) {
     return (
       <main className="flex-1 flex flex-col max-w-5xl mx-auto w-full px-4 py-6">
-        <div className="rounded-md border bg-red-100/50 border-red-300/50 py-2 px-4 text-sm text-red-800">
-          This note is locked.
-        </div>
         <div
           className="ql-editor custom-quill-view mt-6"
           style={{ padding: 0 }}

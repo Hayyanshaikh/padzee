@@ -82,12 +82,16 @@ export function NoteHeaderDesktopActions({
             {canDelete && (
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <DropdownMenuItem className="text-destructive">
+                  <DropdownMenuItem
+                    className="text-destructive"
+                    onSelect={(event) => event.preventDefault()}
+                    data-testid="delete-note-menu-item-desktop"
+                  >
                     <Trash2 className="h-4 w-4 mr-2" />
                     Delete note
                   </DropdownMenuItem>
                 </AlertDialogTrigger>
-                <AlertDialogContent>
+                <AlertDialogContent data-testid="delete-note-dialog-desktop">
                   <AlertDialogHeader>
                     <AlertDialogTitle>Delete note?</AlertDialogTitle>
                     <AlertDialogDescription>
@@ -95,8 +99,13 @@ export function NoteHeaderDesktopActions({
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={onDelete}>
+                    <AlertDialogCancel data-testid="delete-note-cancel-desktop">
+                      Cancel
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={onDelete}
+                      data-testid="delete-note-confirm-desktop"
+                    >
                       Delete
                     </AlertDialogAction>
                   </AlertDialogFooter>
@@ -163,12 +172,16 @@ export function NoteHeaderMobileMenu({
               {canDelete && (
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <DropdownMenuItem className="text-destructive">
+                    <DropdownMenuItem
+                      className="text-destructive"
+                      onSelect={(event) => event.preventDefault()}
+                      data-testid="delete-note-menu-item-mobile"
+                    >
                       <Trash2 className="h-4 w-4 mr-2" />
                       Delete note
                     </DropdownMenuItem>
                   </AlertDialogTrigger>
-                  <AlertDialogContent>
+                  <AlertDialogContent data-testid="delete-note-dialog-mobile">
                     <AlertDialogHeader>
                       <AlertDialogTitle>Delete note?</AlertDialogTitle>
                       <AlertDialogDescription>
@@ -176,8 +189,13 @@ export function NoteHeaderMobileMenu({
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction onClick={onDelete}>
+                      <AlertDialogCancel data-testid="delete-note-cancel-mobile">
+                        Cancel
+                      </AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={onDelete}
+                        data-testid="delete-note-confirm-mobile"
+                      >
                         Delete
                       </AlertDialogAction>
                     </AlertDialogFooter>
