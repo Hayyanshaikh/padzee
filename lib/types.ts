@@ -1,3 +1,5 @@
+export type PlanType = "free" | "pro" | "business";
+
 export interface Note {
   id: string;
   title: string;

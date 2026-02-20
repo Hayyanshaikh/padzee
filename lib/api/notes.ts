@@ -1,16 +1,34 @@
 import { Note } from "../types";
 
-const API_URL: string = process.env.NEXT_PUBLIC_API_URL || "";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://6781237b85151f714b098b06.mockapi.io/api/v1";
+const NOTES_ENDPOINT = `${API_URL}/public-notes`;
+
+async function fetchAPI<T>(
+  endpoint: string,
+  options?: RequestInit,
+): Promise<T> {
+  const response = await fetch(endpoint, {
+    headers: {
+      "Content-Type": "application/json",
+      ...options?.headers,
+    },
+    ...options,
+  });
+
+  if (!response.ok) {
+    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+}
 
 /**
  * Fetch all notes from the API
  */
 export async function fetchNotes(): Promise<Note[]> {
-  const response = await fetch(API_URL);
-  if (!response.ok) {
-    throw new Error("Failed to fetch notes");
-  }
-  return response.json();
+  return fetchAPI<Note[]>(NOTES_ENDPOINT);
 }
 
 /**
@@ -35,32 +53,19 @@ export async function createNote(noteData: {
   lockPasswordHash?: string | null;
   lockedAt?: string;
 }): Promise<Note> {
-  const response = await fetch(API_URL, {
+  return fetchAPI<Note>(NOTES_ENDPOINT, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(noteData),
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to create note");
-  }
-
-  return response.json();
 }
 
 /**
  * Delete a note
  */
 export async function deleteNote(noteId: string): Promise<void> {
-  const response = await fetch(`${API_URL}/${noteId}`, {
+  await fetchAPI<void>(`${NOTES_ENDPOINT}/${noteId}`, {
     method: "DELETE",
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to delete note");
-  }
 }
 
 /**
@@ -78,19 +83,10 @@ export async function updateNote(
     lockedAt?: string | null;
   },
 ): Promise<Note> {
-  const response = await fetch(`${API_URL}/${noteId}`, {
+  return fetchAPI<Note>(`${NOTES_ENDPOINT}/${noteId}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(noteData),
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to update note");
-  }
-
-  return response.json();
 }
 
 /**
